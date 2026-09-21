@@ -1,0 +1,5 @@
+services:
+  external-services:
+    image: "external_services-external-services:latest"
+    ports:
+      - "7070:7070"
