@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+
 @Service
 public class PromotionClient {
 
@@ -21,6 +24,15 @@ public class PromotionClient {
         return client.get()
                 .uri("{id}", productId)
                 .retrieve()
-                .bodyToMono(PromotionResponse.class);
+                .bodyToMono(PromotionResponse.class)
+                .onErrorReturn(defaultPromotionResponse(productId));
+    }
+
+    /*
+        Helper method
+     */
+
+    private PromotionResponse defaultPromotionResponse(int productId) {
+        return PromotionResponse.of(productId, "unavailable", 0.0, LocalDate.now(ZoneId.systemDefault()));
     }
 }

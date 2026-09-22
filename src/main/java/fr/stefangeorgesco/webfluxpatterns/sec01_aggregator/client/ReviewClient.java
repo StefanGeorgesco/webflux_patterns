@@ -24,7 +24,8 @@ public class ReviewClient {
         return client.get()
                 .uri("{id}", productId)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<>() {
-                });
+                .bodyToMono(new ParameterizedTypeReference<List<Review>>() {
+                })
+                .onErrorReturn(List.of());
     }
 }

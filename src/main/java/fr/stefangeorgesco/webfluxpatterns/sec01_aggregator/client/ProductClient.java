@@ -21,6 +21,7 @@ public class ProductClient {
         return client.get()
                 .uri("{id}", productId)
                 .retrieve()
-                .bodyToMono(ProductResponse.class);
+                .bodyToMono(ProductResponse.class)
+                .onErrorResume(e -> Mono.empty());
     }
 }

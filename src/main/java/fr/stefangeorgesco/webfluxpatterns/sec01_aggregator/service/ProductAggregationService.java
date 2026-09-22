@@ -29,7 +29,6 @@ public class ProductAggregationService {
                         promotionClient.getPromotion(productId),
                         reviewClient.getReviews(productId)
                 )
-                .onErrorResume(e -> Mono.empty())
                 .map(tuple ->
                         productAggregation(tuple.getT1(), tuple.getT2(), tuple.getT3()));
     }
