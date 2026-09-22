@@ -1,5 +1,7 @@
 services:
   external-services:
     image: "external_services-external-services:latest"
+    environment:
+      - SEC01_DELAY_RESPONSE=1000
     ports:
       - "7070:7070"
