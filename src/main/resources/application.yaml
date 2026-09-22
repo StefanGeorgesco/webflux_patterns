@@ -8,3 +8,8 @@ sec01:
   product-service: http://localhost:7070/sec01/product/
   promotion-service: http://localhost:7070/sec01/promotion/
   review-service: http://localhost:7070/sec01/review/
+
+sec02:
+  delta-service: http://localhost:7070/sec02/delta/
+  jetblue-service: http://localhost:7070/sec02/jetblue/
+  frontier-service: http://localhost:7070/sec02/frontier/
