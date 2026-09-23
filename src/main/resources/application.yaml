@@ -2,7 +2,7 @@ spring:
   application:
     name: webflux-patterns
 
-package: sec02_scatter_gather
+package: sec03_orchestrator
 
 sec01:
   product-service: http://localhost:7070/sec01/product/
