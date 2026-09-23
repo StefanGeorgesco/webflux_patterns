@@ -13,3 +13,9 @@ sec02:
   delta-service: http://localhost:7070/sec02/delta/
   jetblue-service: http://localhost:7070/sec02/jetblue/
   frontier-service: http://localhost:7070/sec02/frontier/
+
+sec03:
+  product-service: http://localhost:7070/sec03/product/
+  user-service: http://localhost:7070/sec03/user/
+  inventory-service: http://localhost:7070/sec03/inventory/
+  shipping-service: http://localhost:7070/sec03/shipping/
