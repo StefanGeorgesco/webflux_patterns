@@ -2,6 +2,10 @@ spring:
   application:
     name: webflux-patterns
 
+logging:
+  level:
+    fr.stefangeorgesco.webfluxpatterns.sec03_orchestrator: DEBUG
+
 package: sec03_orchestrator
 
 sec01:
