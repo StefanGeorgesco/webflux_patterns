@@ -10,13 +10,7 @@ public class OrchestrationUtil {
     private OrchestrationUtil() {
     }
 
-    public static void buildRequestContext(OrchestrationRequestContext ctx) {
-        buildPaymentRequest(ctx);
-        buildInventoryRequest(ctx);
-        buildShippingRequest(ctx);
-    }
-
-    private static void buildPaymentRequest(OrchestrationRequestContext ctx) {
+    public static void buildPaymentRequest(OrchestrationRequestContext ctx) {
         var orderRequest = ctx.getOrderRequest();
         var paymentRequest = PaymentRequest.of(
                 orderRequest.userId(),
@@ -26,7 +20,7 @@ public class OrchestrationUtil {
         ctx.setPaymentRequest(paymentRequest);
     }
 
-    private static void buildInventoryRequest(OrchestrationRequestContext ctx) {
+    public static void buildInventoryRequest(OrchestrationRequestContext ctx) {
         var orderRequest = ctx.getOrderRequest();
         var inventoryRequest = InventoryRequest.of(
                 ctx.getPaymentResponse().paymentId(),
@@ -36,7 +30,7 @@ public class OrchestrationUtil {
         ctx.setInventoryRequest(inventoryRequest);
     }
 
-    private static void buildShippingRequest(OrchestrationRequestContext ctx) {
+    public static void buildShippingRequest(OrchestrationRequestContext ctx) {
         var orderRequest = ctx.getOrderRequest();
         var shippingRequest = ShippingRequest.of(
                 ctx.getInventoryResponse().inventoryId(),

@@ -6,7 +6,6 @@ import fr.stefangeorgesco.webfluxpatterns.sec04_sequential_orchestrator.dto.Orde
 import fr.stefangeorgesco.webfluxpatterns.sec04_sequential_orchestrator.dto.OrderResponse;
 import fr.stefangeorgesco.webfluxpatterns.sec04_sequential_orchestrator.dto.Product;
 import fr.stefangeorgesco.webfluxpatterns.sec04_sequential_orchestrator.util.DebugUtil;
-import fr.stefangeorgesco.webfluxpatterns.sec04_sequential_orchestrator.util.OrchestrationUtil;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -31,7 +30,6 @@ public class OrchestratorService {
         return requestMono
                 .map(OrchestrationRequestContext::new)
                 .flatMap(this::getProductPrice)
-                .doOnNext(OrchestrationUtil::buildRequestContext)
                 .flatMap(orderFulfillmentService::placeOrder)
                 .doOnNext(this::checkRequestStatus)
                 .doOnNext(DebugUtil::logRequestContext) // For debugging purposes
