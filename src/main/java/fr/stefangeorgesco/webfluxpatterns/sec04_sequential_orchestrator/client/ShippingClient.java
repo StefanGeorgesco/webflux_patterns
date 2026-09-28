@@ -41,6 +41,6 @@ public class ShippingClient {
     }
 
     private ShippingResponse errorResponse(ShippingRequest request) {
-        return ShippingResponse.of(request.orderId(), request.quantity(), FAILED, null, null);
+        return ShippingResponse.of(null, request.quantity(), FAILED, null, null);
     }
 }

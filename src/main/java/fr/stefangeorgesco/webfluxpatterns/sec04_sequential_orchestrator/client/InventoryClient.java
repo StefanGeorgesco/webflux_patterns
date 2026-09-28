@@ -40,6 +40,6 @@ public class InventoryClient {
     }
 
     private InventoryResponse errorResponse(InventoryRequest request) {
-        return InventoryResponse.of(request.productId(), request.quantity(), 0, FAILED);
+        return InventoryResponse.of(null, request.productId(), request.quantity(), 0, FAILED);
     }
 }

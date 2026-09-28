@@ -40,6 +40,6 @@ public class UserClient {
     }
 
     private PaymentResponse errorResponse(PaymentRequest request) {
-        return PaymentResponse.of(request.userId(), null, 0, FAILED);
+        return PaymentResponse.of(null, request.userId(), null, 0, FAILED);
     }
 }

@@ -29,7 +29,7 @@ public class OrchestrationUtil {
     private static void buildInventoryRequest(OrchestrationRequestContext ctx) {
         var orderRequest = ctx.getOrderRequest();
         var inventoryRequest = InventoryRequest.of(
-                ctx.getOrderId(),
+                ctx.getPaymentResponse().paymentId(),
                 orderRequest.productId(),
                 orderRequest.quantity()
         );
@@ -39,9 +39,9 @@ public class OrchestrationUtil {
     private static void buildShippingRequest(OrchestrationRequestContext ctx) {
         var orderRequest = ctx.getOrderRequest();
         var shippingRequest = ShippingRequest.of(
+                ctx.getInventoryResponse().inventoryId(),
                 orderRequest.quantity(),
-                orderRequest.userId(),
-                ctx.getOrderId()
+                orderRequest.userId()
         );
         ctx.setShippingRequest(shippingRequest);
     }

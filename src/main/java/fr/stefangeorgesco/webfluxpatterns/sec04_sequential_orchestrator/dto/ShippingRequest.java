@@ -2,11 +2,12 @@ package fr.stefangeorgesco.webfluxpatterns.sec04_sequential_orchestrator.dto;
 
 import java.util.UUID;
 
-public record ShippingRequest(int quantity,
-                              int userId,
-                              UUID orderId) {
+public record ShippingRequest(UUID inventoryId,
+                              int quantity,
+                              int userId
+) {
 
-    public static ShippingRequest of(int quantity, int userId, UUID orderId) {
-        return new ShippingRequest(quantity, userId, orderId);
+    public static ShippingRequest of(UUID inventoryId, int quantity, int userId) {
+        return new ShippingRequest(inventoryId, quantity, userId);
     }
 }
