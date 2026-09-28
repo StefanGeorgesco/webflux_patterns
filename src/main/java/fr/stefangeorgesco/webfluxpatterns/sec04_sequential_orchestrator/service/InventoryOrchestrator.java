@@ -5,6 +5,7 @@ import fr.stefangeorgesco.webfluxpatterns.sec04_sequential_orchestrator.dto.Orch
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -23,12 +24,14 @@ public class InventoryOrchestrator extends Orchestrator {
     public Mono<OrchestrationRequestContext> create(OrchestrationRequestContext ctx) {
         return client.deduct(ctx.getInventoryRequest())
                 .doOnNext(ctx::setInventoryResponse)
-                .thenReturn(ctx);
+                .thenReturn(ctx)
+                .handle(statusHandler());
     }
 
     @Override
     public Predicate<OrchestrationRequestContext> isSuccess() {
-        return ctx -> SUCCESS.equals(ctx.getInventoryResponse().status());
+        return ctx -> Objects.nonNull(ctx.getInventoryResponse())
+                && SUCCESS.equals(ctx.getInventoryResponse().status());
     }
 
     @Override
