@@ -4,9 +4,9 @@ spring:
 
 logging:
   level:
-    fr.stefangeorgesco.webfluxpatterns.sec03_orchestrator: DEBUG
+    fr.stefangeorgesco.webfluxpatterns.sec03_parallel_orchestrator: DEBUG
 
-package: sec03_orchestrator
+package: sec03_parallel_orchestrator
 
 sec01:
   product-service: http://localhost:7070/sec01/product/
