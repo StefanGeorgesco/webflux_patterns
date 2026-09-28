@@ -1,17 +1,17 @@
-package fr.stefangeorgesco.webfluxpatterns.sec03_parallel_orchestrator.service;
+package fr.stefangeorgesco.webfluxpatterns.sec04_sequential_orchestrator.service;
 
-import fr.stefangeorgesco.webfluxpatterns.sec03_parallel_orchestrator.client.ProductClient;
-import fr.stefangeorgesco.webfluxpatterns.sec03_parallel_orchestrator.dto.OrchestrationRequestContext;
-import fr.stefangeorgesco.webfluxpatterns.sec03_parallel_orchestrator.dto.OrderRequest;
-import fr.stefangeorgesco.webfluxpatterns.sec03_parallel_orchestrator.dto.OrderResponse;
-import fr.stefangeorgesco.webfluxpatterns.sec03_parallel_orchestrator.dto.Product;
-import fr.stefangeorgesco.webfluxpatterns.sec03_parallel_orchestrator.util.DebugUtil;
-import fr.stefangeorgesco.webfluxpatterns.sec03_parallel_orchestrator.util.OrchestrationUtil;
+import fr.stefangeorgesco.webfluxpatterns.sec04_sequential_orchestrator.client.ProductClient;
+import fr.stefangeorgesco.webfluxpatterns.sec04_sequential_orchestrator.dto.OrchestrationRequestContext;
+import fr.stefangeorgesco.webfluxpatterns.sec04_sequential_orchestrator.dto.OrderRequest;
+import fr.stefangeorgesco.webfluxpatterns.sec04_sequential_orchestrator.dto.OrderResponse;
+import fr.stefangeorgesco.webfluxpatterns.sec04_sequential_orchestrator.dto.Product;
+import fr.stefangeorgesco.webfluxpatterns.sec04_sequential_orchestrator.util.DebugUtil;
+import fr.stefangeorgesco.webfluxpatterns.sec04_sequential_orchestrator.util.OrchestrationUtil;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-import static fr.stefangeorgesco.webfluxpatterns.sec03_parallel_orchestrator.dto.Status.FAILED;
-import static fr.stefangeorgesco.webfluxpatterns.sec03_parallel_orchestrator.dto.Status.SUCCESS;
+import static fr.stefangeorgesco.webfluxpatterns.sec04_sequential_orchestrator.dto.Status.FAILED;
+import static fr.stefangeorgesco.webfluxpatterns.sec04_sequential_orchestrator.dto.Status.SUCCESS;
 
 @Service
 public class OrchestratorService {
@@ -51,7 +51,6 @@ public class OrchestratorService {
         }
     }
 
-    @SuppressWarnings("DuplicatedCode")
     private OrderResponse toOrderResponse(OrchestrationRequestContext ctx) {
         var isSuccess = SUCCESS.equals(ctx.getStatus());
         var address = isSuccess ? ctx.getShippingResponse().address() : null;
