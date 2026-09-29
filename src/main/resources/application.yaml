@@ -6,7 +6,7 @@ logging:
   level:
     fr.stefangeorgesco.webfluxpatterns: DEBUG
 
-package: sec07_retry
+package: sec08_circuit_breaker
 
 sec01:
   product-service: http://localhost:7070/sec01/product/
@@ -41,3 +41,7 @@ sec06:
 sec07:
   product-service: http://localhost:7070/sec07/product/
   review-service: http://localhost:7070/sec07/review/
+
+sec08:
+  product-service: http://localhost:7070/sec08/product/
+  review-service: http://localhost:7070/sec08/review/
