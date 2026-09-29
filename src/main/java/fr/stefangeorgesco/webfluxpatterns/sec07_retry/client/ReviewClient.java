@@ -2,11 +2,12 @@ package fr.stefangeorgesco.webfluxpatterns.sec07_retry.client;
 
 import fr.stefangeorgesco.webfluxpatterns.sec07_retry.dto.Review;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
 import java.util.List;
 
 @Service
@@ -24,8 +25,14 @@ public class ReviewClient {
         return client.get()
                 .uri("{id}", productId)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<Review>>() {
-                })
+                // Do not retry on 4xx errors, as they are client errors and retrying won't help
+                .onStatus(HttpStatusCode::is4xxClientError, response -> Mono.empty())
+                .bodyToFlux(Review.class)
+                .collectList()
+                // Use retryWhen to adapt the retry strategy
+                .retry(5)
+                // When retrying, add a timeout to avoid waiting too long for the response
+                .timeout(Duration.ofMillis(300))
                 .onErrorReturn(List.of());
     }
 }
