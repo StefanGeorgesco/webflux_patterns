@@ -3,6 +3,7 @@ services:
     image: "external_services-external-services:latest"
     environment:
       - SEC01_DELAY_RESPONSE=1000
-      - SEC08_LOG_ENABLED=true
+#      - SEC08_LOG_ENABLED=true
+      - SEC09_LOG_ENABLED=true
     ports:
       - "7070:7070"
