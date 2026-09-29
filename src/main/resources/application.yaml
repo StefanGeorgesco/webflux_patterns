@@ -6,7 +6,7 @@ logging:
   level:
     fr.stefangeorgesco.webfluxpatterns: DEBUG
 
-package: sec05_splitter
+package: sec06_timeout
 
 sec01:
   product-service: http://localhost:7070/sec01/product/
@@ -33,3 +33,7 @@ sec04:
 sec05:
   car-service: http://localhost:7070/sec05/car/
   room-service: http://localhost:7070/sec05/room/
+
+sec06:
+  product-service: http://localhost:7070/sec06/product/
+  review-service: http://localhost:7070/sec06/review/
