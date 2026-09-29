@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
+
 @Service
 public class ProductClient {
 
@@ -22,6 +24,7 @@ public class ProductClient {
                 .uri("{id}", productId)
                 .retrieve()
                 .bodyToMono(Product.class)
+                .timeout(Duration.ofMillis(475))
                 .onErrorResume(e -> Mono.empty());
     }
 }

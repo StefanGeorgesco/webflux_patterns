@@ -2,7 +2,9 @@ package fr.stefangeorgesco.webfluxpatterns.sec06_timeout.service;
 
 import fr.stefangeorgesco.webfluxpatterns.sec06_timeout.client.ProductClient;
 import fr.stefangeorgesco.webfluxpatterns.sec06_timeout.client.ReviewClient;
-import fr.stefangeorgesco.webfluxpatterns.sec06_timeout.dto.*;
+import fr.stefangeorgesco.webfluxpatterns.sec06_timeout.dto.Product;
+import fr.stefangeorgesco.webfluxpatterns.sec06_timeout.dto.ProductAggregate;
+import fr.stefangeorgesco.webfluxpatterns.sec06_timeout.dto.Review;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
@@ -19,6 +21,8 @@ public class ProductAggregationService {
         this.reviewClient = reviewClient;
     }
 
+    // Specification: respond in less than 500ms in 90% of the cases.
+    // See clients timeout implementation details.
     public Mono<ProductAggregate> aggregateProduct(int productId) {
         return Mono.zip(
                         productClient.getProduct(productId),

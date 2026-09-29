@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
+import java.time.Duration;
 import java.util.List;
 
 @Service
@@ -26,6 +27,7 @@ public class ReviewClient {
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<List<Review>>() {
                 })
+                .timeout(Duration.ofMillis(475))
                 .onErrorReturn(List.of());
     }
 }
