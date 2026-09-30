@@ -6,7 +6,7 @@ logging:
   level:
     fr.stefangeorgesco.webfluxpatterns: DEBUG
 
-package: sec09_rate_limiter
+package: sec10_bulkhead
 
 resilience4j.circuitbreaker:
     instances:
@@ -73,3 +73,7 @@ sec08:
 sec09:
   product-service: http://localhost:7070/sec09/product/
   review-service: http://localhost:7070/sec09/review/
+
+sec10:
+  product-service: http://localhost:7070/sec10/product/
+  review-service: http://localhost:7070/sec10/review/
